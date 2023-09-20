@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Packages/Aid/Runtime/AI/BehaviourTree/Editor/UI/NodeViewStyle.uss?fileID=7433441132597879392&amp;guid=210436e5247f1724aa99022e1c43afff&amp;type=3#NodeViewStyle" />
+    <ui:VisualElement name="node-state" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="divider" class="horizontal" />
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="input" />
+                <ui:VisualElement name="text-container" picking-mode="Ignore">
+                    <ui:VisualElement name="title">
+                        <ui:Label name="title-label" text="RepeatNode" picking-mode="Ignore" class="unity-text-element unity-label" />
+                    </ui:VisualElement>
+                    <ui:Label name="description" text="Description" picking-mode="Ignore" class="unity-text-element unity-label" />
+                </ui:VisualElement>
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="output" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" text="Description text here" style="top: 0; right: 0; left: 0; bottom: 1px;" />
+</ui:UXML>

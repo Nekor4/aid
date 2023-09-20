@@ -1,0 +1,35 @@
+#param-container {
+    min-height: 20px;
+    background-color: rgba(75, 75, 75, 255);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-top: 3px;
+    padding-left: 5px;
+}
+
+#text-field Label {
+    display: none;
+}
+
+#property-field Label {
+    display: flex;
+    width: 40px;
+    min-width: 30px;
+}
+
+.frame {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
