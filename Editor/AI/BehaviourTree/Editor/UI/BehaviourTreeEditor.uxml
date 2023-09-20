@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/Aid/Runtime/BehaviourTree/Editor/UI/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=1a744a3663fb8a2449834eb0fbb3e788&amp;type=3#BehaviourTreeEditor" />
+    <uie:Toolbar>
+        <uie:ToolbarMenu display-tooltip-when-elided="true" text="Assets" />
+    </uie:Toolbar>
+    <Aid.BehaviourTree.Editor.SplitView fixed-pane-initial-dimension="250">
+        <ui:VisualElement name="left-panel">
+            <Aid.BehaviourTree.Editor.SplitView orientation="Vertical" fixed-pane-initial-dimension="180">
+                <ui:VisualElement name="inspector-container">
+                    <Aid.BehaviourTree.Editor.InspectorView />
+                    <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(38, 38, 38);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="blackboard-container">
+                    <Aid.BehaviourTree.Editor.BlackboardView>
+                        <uie:Toolbar>
+                            <ui:Label text="Blackboard" display-tooltip-when-elided="true" style="-unity-text-align: middle-left;" />
+                            <uie:ToolbarMenu display-tooltip-when-elided="true" />
+                        </uie:Toolbar>
+                        <ui:ListView focusable="true" />
+                        <ui:IMGUIContainer />
+                    </Aid.BehaviourTree.Editor.BlackboardView>
+                </ui:VisualElement>
+            </Aid.BehaviourTree.Editor.SplitView>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel">
+            <ui:Label text="Tree View" display-tooltip-when-elided="true" name="tree-name" style="background-color: rgb(38, 38, 38);" />
+            <Aid.BehaviourTree.Editor.BehaviourTreeView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </Aid.BehaviourTree.Editor.SplitView>
+    <Aid.BehaviourTree.Editor.InspectorView />
+</ui:UXML>

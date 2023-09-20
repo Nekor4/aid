@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/Aid/Runtime/AI/BehaviourTree/Editor/Blackboard/UI/BlackboarStyles.uss?fileID=7433441132597879392&amp;guid=f91fab95c68cc55428e4a61eab485b5c&amp;type=3#BlackboarStyles" />
+    <ui:VisualElement name="param-container" style="align-items: flex-start; -unity-text-align: upper-left; flex-direction: row;">
+        <ui:Button text="X" display-tooltip-when-elided="true" name="delete-button" style="width: 24px; min-width: 7px; color: rgb(255, 0, 0); -unity-font-style: bold; height: 20px;" />
+        <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" text="filler text" name="text-field" class="frame" style="height: 20px; width: 150px; flex-direction: row;" />
+        <uie:PropertyField name="property-field" class="frame" style="height: 20px; width: 250px; flex-direction: column; flex-wrap: nowrap;" />
+    </ui:VisualElement>
+</ui:UXML>
