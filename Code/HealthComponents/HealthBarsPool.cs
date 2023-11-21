@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Aid.Health
+namespace Aid.HealthComponents
 {
     public class HealthBarsPool : Singleton<HealthBarsPool>, IObjectPool<HealthBar>
     {
