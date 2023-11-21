@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-
-namespace Aid.BehaviourTree {
+namespace Aid.AI.BehaviourTree.Nodes.Composites {
     public class RandomSelector : CompositeNode {
         protected int current;
 
         protected override void OnStart() {
-            current = Random.Range(0, children.Count);
+            current = UnityEngine.Random.Range(0, children.Count);
         }
 
         protected override void OnStop() {

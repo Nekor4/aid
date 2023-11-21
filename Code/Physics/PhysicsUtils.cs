@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace War.Scripts.GameCore.Utils
+namespace Aid.Physics
 {
     public class PhysicsUtils
     {
         public static Vector3 JumpTo(Vector3 from, Vector3 to ,float jumpAngle)
         {
-            float gravity = Physics.gravity.magnitude;
+            float gravity = UnityEngine.Physics.gravity.magnitude;
             // Selected angle in radians
             float angle = jumpAngle * Mathf.Deg2Rad;
  
@@ -35,8 +35,8 @@ namespace War.Scripts.GameCore.Utils
         {
             Vector3[] results = new Vector3[steps];
  
-            float timestep = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
-            Vector3 gravityAccel = Physics.gravity * timestep * timestep;
+            float timestep = Time.fixedDeltaTime / UnityEngine.Physics.defaultSolverVelocityIterations;
+            Vector3 gravityAccel = UnityEngine.Physics.gravity * timestep * timestep;
             float drag = 1f - timestep * rigidbodyDrag;
             Vector3 moveStep = velocity * timestep;
  

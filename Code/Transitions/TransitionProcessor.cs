@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Transitions
 {
     public class TransitionProcessor : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-﻿namespace Aid.Events
-{
-	using UnityEngine.Events;
-	using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
+namespace Aid.Events.ScriptableObjects
+{
 	/// <summary>
 	/// This class is used for Events that have one gameobject argument.
 	/// Example: A game object pick up event event, where the GameObject is the object we are interacting with.

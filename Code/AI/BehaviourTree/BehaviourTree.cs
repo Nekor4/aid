@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-#if UNITY_EDITOR
+using Aid.AI.BehaviourTree.Nodes;
+using Aid.AI.BehaviourTree.Nodes.Composites;
+using Aid.AI.BehaviourTree.Nodes.Decorators;
 using UnityEditor;
-#endif
+using UnityEngine;
 
 
-namespace Aid.BehaviourTree {
+namespace Aid.AI.BehaviourTree {
     [CreateAssetMenu(menuName = "Aid/AI/Behaviour Tree")]
     public class BehaviourTree : ScriptableObject {
         public Node rootNode;
         public Node.State treeState = Node.State.Running;
         public List<Node> nodes = new List<Node>();
 
-        [SerializeField] private Blackboard blackboard;
-        public Blackboard Blackboard => blackboard;
+        [SerializeField] private Blackboard.Blackboard blackboard;
+        public Blackboard.Blackboard Blackboard => blackboard;
 
         public Node.State Update() {
             if (rootNode.CurrentState == Node.State.Running) {
@@ -77,7 +78,7 @@ namespace Aid.BehaviourTree {
             var isDirty = false;
             if (blackboard == null)
             {
-                blackboard = CreateInstance<Blackboard>();
+                blackboard = CreateInstance<Blackboard.Blackboard>();
                 blackboard.name = "Blackboard";
                 AssetDatabase.AddObjectToAsset(blackboard, this);
                 isDirty = true;

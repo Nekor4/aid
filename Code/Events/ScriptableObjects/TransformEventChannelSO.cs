@@ -1,8 +1,8 @@
-﻿namespace Aid.Events
-{
-	using UnityEngine.Events;
-	using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
+namespace Aid.Events.ScriptableObjects
+{
 	/// <summary>
 	/// This class is used for Events that have one transform argument.
 	/// Example: Spawn system initializes player and fire event, where the transform is the position of player.

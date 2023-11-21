@@ -1,7 +1,6 @@
 using UnityEngine;
-using Aid;
 
-namespace Game.UI
+namespace Aid.UI
 {
     public class DynamicUiElement : MonoBehaviour
     {

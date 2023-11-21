@@ -2,11 +2,8 @@
 using Aid.Pool;
 using UnityEngine;
 
-namespace Aid.Audio
+namespace Aid.Audio.SoundEmitters
 {
-	using Aid.Factory;
-	using Aid.Pool;
-
 	[CreateAssetMenu(fileName = "NewSoundEmitterPool", menuName = "Pool/SoundEmitter Pool")]
 public class SoundEmitterPoolSO : ComponentPoolSO<SoundEmitter>
 {

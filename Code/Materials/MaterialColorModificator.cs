@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace TapNice.Scripts.GameCore.Utils.Materials
+namespace Aid.Materials
 {
     public class MaterialColorModificator : MaterialModificator
     {
@@ -25,12 +24,12 @@ namespace TapNice.Scripts.GameCore.Utils.Materials
                 hasCustomProperty = true;
             }
 
-            currentDuration = Random.Range(minDuration, maxDuration);
+            currentDuration = UnityEngine.Random.Range(minDuration, maxDuration);
         }
 
         private void OnValidate()
         {
-            currentDuration = Random.Range(minDuration, maxDuration);
+            currentDuration = UnityEngine.Random.Range(minDuration, maxDuration);
         }
 
         public override void UpdateMaterial()
@@ -46,7 +45,7 @@ namespace TapNice.Scripts.GameCore.Utils.Materials
             }
             else if (time <= 0)
             {
-                currentDuration = Random.Range(minDuration, maxDuration);
+                currentDuration = UnityEngine.Random.Range(minDuration, maxDuration);
                 time = 0;
                 invert = false;
             }

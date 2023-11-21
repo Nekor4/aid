@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aid.AI.BehaviourTree.Nodes;
+using Aid.AI.BehaviourTree.Nodes.Actions;
+using Aid.AI.BehaviourTree.Nodes.Composites;
+using Aid.AI.BehaviourTree.Nodes.Decorators;
 using UnityEngine;
 
 namespace Aid.BehaviourTree.Editor
@@ -17,7 +21,7 @@ namespace Aid.BehaviourTree.Editor
 
         public Action<NodeView> Selected;
 
-        private BehaviourTree currentTree;
+        private AI.BehaviourTree.BehaviourTree currentTree;
 
         public BehaviourTreeView()
         {
@@ -44,7 +48,7 @@ namespace Aid.BehaviourTree.Editor
             AssetDatabase.SaveAssets();
         }
 
-        public NodeView FindNodeView(Aid.BehaviourTree.Node node)
+        public NodeView FindNodeView(AI.BehaviourTree.Nodes.Node node)
         {
             return GetNodeByGuid(node.guid) as NodeView;
         }
@@ -56,7 +60,7 @@ namespace Aid.BehaviourTree.Editor
             graphViewChanged += OnGraphViewChanged;
         }
 
-        public void PopulateView(BehaviourTree tree)
+        public void PopulateView(AI.BehaviourTree.BehaviourTree tree)
         {
             currentTree = tree;
 
@@ -79,7 +83,7 @@ namespace Aid.BehaviourTree.Editor
             //Create edges
             tree.nodes.ForEach(n =>
             {
-                var children = BehaviourTree.GetChildren(n);
+                var children = AI.BehaviourTree.BehaviourTree.GetChildren(n);
                 children.ForEach(c =>
                 {
                     NodeView parentView = FindNodeView(n);
@@ -203,7 +207,7 @@ namespace Aid.BehaviourTree.Editor
             CreateNodeView(node);
         }
 
-        private void CreateNodeView(Aid.BehaviourTree.Node node)
+        private void CreateNodeView(AI.BehaviourTree.Nodes.Node node)
         {
             var nodeView = new NodeView(node);
             nodeView.Selected = Selected;

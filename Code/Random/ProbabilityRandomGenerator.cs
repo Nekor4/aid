@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Aid
+namespace Aid.Random
 {
     public class ProbabilityRandomGenerator
     {

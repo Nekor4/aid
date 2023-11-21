@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using Aid;
+using Aid.Extensions;
 
 [RequireComponent(typeof(LineRenderer))]
 public class SmoothLine : MonoBehaviour

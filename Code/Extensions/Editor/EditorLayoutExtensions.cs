@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Extensions.Editor
 {
 	public static class EditorLayoutExtensions
 	{

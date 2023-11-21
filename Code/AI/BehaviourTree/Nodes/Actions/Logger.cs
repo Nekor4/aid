@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Aid.AI.BehaviourTree.Blackboard;
+using UnityEngine;
 
-namespace Aid.BehaviourTree
+namespace Aid.AI.BehaviourTree.Nodes.Actions
 {
     public class DebugLogNode : ActionNode
     {

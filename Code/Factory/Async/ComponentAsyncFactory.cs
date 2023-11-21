@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Aid.Factory
+namespace Aid.Factory.Async
 {
     public class ComponentAsyncFactory<T>: IAsyncFactory<T> where T : Component
     {

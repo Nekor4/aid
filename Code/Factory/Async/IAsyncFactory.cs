@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Aid.Factory
+namespace Aid.Factory.Async
 {
     public interface IAsyncFactory<T>
     {

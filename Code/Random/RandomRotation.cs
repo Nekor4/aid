@@ -1,7 +1,8 @@
 ﻿
-namespace Aid
-{
 using UnityEngine;
+
+namespace Aid.Random
+{
     public class RandomRotation : MonoBehaviour
     {
         [SerializeField] private Vector3 min = Vector3.zero, max = Vector3.one;

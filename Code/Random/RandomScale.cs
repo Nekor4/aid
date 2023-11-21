@@ -1,7 +1,7 @@
-namespace Aid {
 using UnityEngine;
 
-public class RandomScale : MonoBehaviour
+namespace Aid.Random {
+    public class RandomScale : MonoBehaviour
 {
     [SerializeField] private Vector3 min = Vector3.zero, max = Vector3.one;
 

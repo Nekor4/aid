@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore.Utils
+namespace Aid.Materials
 {
     public class MaterialGroup
     {

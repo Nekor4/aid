@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Transitions
 {
     using Object = UnityEngine.Object;
 

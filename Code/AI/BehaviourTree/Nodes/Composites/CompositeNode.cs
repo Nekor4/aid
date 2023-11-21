@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aid.BehaviourTree
+namespace Aid.AI.BehaviourTree.Nodes.Composites
 {
     public abstract class CompositeNode : Node
     {

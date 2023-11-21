@@ -1,7 +1,7 @@
-﻿namespace Aid.Events
-{
-	using UnityEngine;
+﻿using UnityEngine;
 
+namespace Aid.Events.ScriptableObjects
+{
 	public class EventChannelBaseSO : ScriptableObject
 	{
 		[TextArea]

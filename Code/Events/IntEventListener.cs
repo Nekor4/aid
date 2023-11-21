@@ -1,4 +1,6 @@
-﻿namespace Aid.Events
+﻿using Aid.Events.ScriptableObjects;
+
+namespace Aid.Events
 {
 
 

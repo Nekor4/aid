@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Aid.Factory;
+using Aid.Factory.Async;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Aid.Pool
+namespace Aid.Pool.Async
 {
     public class GameObjectsAsyncPoolsRoot : MonoBehaviour
     {

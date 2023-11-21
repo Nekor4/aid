@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Aid.BehaviourTree{
+namespace Aid.AI.BehaviourTree.Nodes.Decorators{
     public class Failure : DecoratorNode {
         protected override void OnStart() {
         }

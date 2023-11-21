@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace Aid
+namespace Aid.Extensions
 {
 	public static class TransformExtensions
 	{

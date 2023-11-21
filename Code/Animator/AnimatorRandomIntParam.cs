@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.Animations;
 
-namespace TapNice.Scripts.GameCore.Animations
+namespace Aid.Animator
 {
     public class AnimatorRandomIntParam : StateMachineBehaviour
     {
         [SerializeField] private int minValue, maxValue;
         [SerializeField] private string paramName;
 
-        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
+        public override void OnStateEnter(UnityEngine.Animator animator, AnimatorStateInfo stateInfo, int layerIndex,
             AnimatorControllerPlayable controller)
         {
-            animator.SetInteger(paramName, Random.Range(minValue, maxValue));
+            animator.SetInteger(paramName, UnityEngine.Random.Range(minValue, maxValue));
         }
     }
 }

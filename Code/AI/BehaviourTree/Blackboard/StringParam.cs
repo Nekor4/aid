@@ -1,4 +1,4 @@
-﻿namespace Aid.BehaviourTree
+﻿namespace Aid.AI.BehaviourTree.Blackboard
 {
     public class StringParam : BlackboardParam
     {
