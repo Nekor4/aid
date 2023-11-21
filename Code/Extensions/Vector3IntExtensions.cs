@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Extensions
 {
 	public static class Vector3IntExtensions
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TapNice.Scripts.GameCore.Utils.Materials
+namespace Aid.Materials
 {
     public class MaterialModificatorProcessor : MonoBehaviour
     {

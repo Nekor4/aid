@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Aid.AI.BehaviourTree.Blackboard;
+using UnityEngine;
 
 namespace Aid.BehaviourTree.Editor
 {

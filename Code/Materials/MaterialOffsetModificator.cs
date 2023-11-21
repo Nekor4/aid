@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace TapNice.Scripts.GameCore.Utils.Materials
+namespace Aid.Materials
 {
     public class MaterialOffsetModificator : MaterialModificator
     {

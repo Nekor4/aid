@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using Aid.Audio.AudioData;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Aid.Audio
+namespace Aid.Audio.SoundEmitters
 {
 	[RequireComponent(typeof(AudioSource))]
 	public class SoundEmitter : MonoBehaviour

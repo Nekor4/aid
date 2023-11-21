@@ -1,7 +1,7 @@
 ﻿using Aid.Factory;
 using UnityEngine;
 
-namespace Aid.Audio
+namespace Aid.Audio.SoundEmitters
 {
 	[CreateAssetMenu(fileName = "NewSoundEmitterFactory", menuName = "Factory/SoundEmitter Factory")]
 	public class SoundEmitterFactorySO : FactorySO<SoundEmitter>

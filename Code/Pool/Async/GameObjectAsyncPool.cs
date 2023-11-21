@@ -1,8 +1,7 @@
-﻿using Aid.Factory;
-using Aid.Pool.Async;
+﻿using Aid.Factory.Async;
 using UnityEngine;
 
-namespace Aid.Pool
+namespace Aid.Pool.Async
 {
     public class GameObjectAsyncPool : AsyncPool<GameObject>
     {

@@ -1,8 +1,8 @@
-﻿namespace Aid.Events
-{
-	using UnityEngine;
-	using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
+namespace Aid.Events.ScriptableObjects
+{
 	/// <summary>
 	/// This class is used for Events that have no arguments (Example: Exit game event)
 	/// </summary>

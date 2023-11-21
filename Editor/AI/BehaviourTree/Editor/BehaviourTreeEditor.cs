@@ -1,3 +1,4 @@
+using Aid.AI.BehaviourTree;
 using UnityEditor.Callbacks;
 
 namespace Aid.BehaviourTree.Editor
@@ -15,7 +16,7 @@ namespace Aid.BehaviourTree.Editor
         private BlackboardView blackboardView;
         private TextElement treeName;
         
-        private BehaviourTree currentTree;
+        private AI.BehaviourTree.BehaviourTree currentTree;
 
 
         [MenuItem("Aid/AI/Behaviour Tree Viewer")]
@@ -30,7 +31,7 @@ namespace Aid.BehaviourTree.Editor
         [OnOpenAsset]
         public static bool OnOpenAsset(int instanceId, int line)
         {
-            if (Selection.activeObject is BehaviourTree)
+            if (Selection.activeObject is AI.BehaviourTree.BehaviourTree)
             {
                 OpenWindow();
                 return true;
@@ -111,7 +112,7 @@ namespace Aid.BehaviourTree.Editor
         {
             if(treeView == null) return;
 
-            var tree = Selection.activeObject as BehaviourTree;
+            var tree = Selection.activeObject as AI.BehaviourTree.BehaviourTree;
             
             if(Selection.activeGameObject!= null)
                 if (Selection.activeGameObject.TryGetComponent<BehaviourTreeRunner>(out var runner))

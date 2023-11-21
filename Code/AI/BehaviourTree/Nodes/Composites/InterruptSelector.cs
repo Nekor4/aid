@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Aid.BehaviourTree {
+namespace Aid.AI.BehaviourTree.Nodes.Composites {
     public class InterruptSelector : Selector {
         protected override State OnUpdate() {
             int previous = current;

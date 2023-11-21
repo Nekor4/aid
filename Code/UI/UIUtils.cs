@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Aid
+namespace Aid.UI
 {
 	public static class UIUtils
 	{

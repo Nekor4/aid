@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Aid
+namespace Aid.Extensions
 {
 	public static class ScrollRectExtensions
 	{

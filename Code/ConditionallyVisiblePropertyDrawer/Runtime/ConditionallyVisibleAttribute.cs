@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityToolbag
+namespace Aid.ConditionallyVisiblePropertyDrawer.Runtime
 {
     public sealed class ConditionallyVisibleAttribute : PropertyAttribute
     {

@@ -1,7 +1,7 @@
-﻿namespace TapNice.Scripts.GameCore.Animations
-{
-	using UnityEngine;
+﻿using UnityEngine;
 
+namespace Aid.Animator
+{
 	public class AnimatorBoolParamChanger : StateMachineBehaviour
 	{
 		[SerializeField]
@@ -10,12 +10,12 @@
 		[SerializeField]
 		private string paramName;
 
-		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		public override void OnStateEnter(UnityEngine.Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			animator.SetBool(paramName, makeTrueOnEnter);
 		}
 
-		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+		public override void OnStateExit(UnityEngine.Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			animator.SetBool(paramName, makeTrueOnEnter == false);
 		}

@@ -1,4 +1,4 @@
-﻿namespace Aid.BehaviourTree
+﻿namespace Aid.AI.BehaviourTree.Nodes.Decorators
 {
     public class Repeat : DecoratorNode
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Aid.BehaviourTree
+﻿namespace Aid.AI.BehaviourTree.Nodes.Composites
 {
     public class Sequencer : CompositeNode
     {

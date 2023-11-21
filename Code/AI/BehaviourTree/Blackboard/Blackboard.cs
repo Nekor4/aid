@@ -1,10 +1,11 @@
-﻿namespace Aid.BehaviourTree
+﻿using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+namespace Aid.AI.BehaviourTree.Blackboard
 {
-    using System.Collections.Generic;
 #if UNITY_EDITOR
-    using UnityEditor;
 #endif
-    using UnityEngine;
 
     public class Blackboard : ScriptableObject
     {

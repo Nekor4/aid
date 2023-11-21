@@ -1,15 +1,9 @@
-﻿using Aid.Audio;
+﻿using Aid.Audio.AudioData;
+using UnityEngine;
+using UnityEngine.Events;
 
-namespace Aid.Events
+namespace Aid.Events.ScriptableObjects
 {
-	using UnityEngine;
-
-	using System.Collections;
-
-	using Aid.Audio;
-
-	using UnityEngine.Events;
-
 	/// <summary>
 	/// Event on which <c>AudioCue</c> components send a message to play SFX and music. <c>AudioManager</c> listens on these events, and actually plays the sound.
 	/// </summary>

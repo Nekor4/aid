@@ -1,4 +1,6 @@
 ﻿using System;
+using Aid.Extensions;
+using Aid.Transitions;
 using UnityEngine;
 
 namespace Aid.Animation

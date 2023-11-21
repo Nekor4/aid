@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace TapNice.Scripts.GameCore.Utils.Materials
+namespace Aid.Materials
 {
     public abstract class MaterialModificator : MonoBehaviour
     {

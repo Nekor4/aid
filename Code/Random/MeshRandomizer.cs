@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Random
 {
 	[RequireComponent(typeof(MeshFilter))]
 	[RequireComponent(typeof(MeshRenderer))]

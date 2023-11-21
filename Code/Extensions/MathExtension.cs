@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aid
+namespace Aid.Extensions
 {
 	public static class MathExtension
 	{
@@ -64,7 +64,7 @@ namespace Aid
 
 		public static Vector3 GetRandomPointOnCircle(Vector3 center, float radius)
 		{
-			return PointOnCircle(center, radius, Random.Range(.025f, 1));
+			return PointOnCircle(center, radius, UnityEngine.Random.Range(.025f, 1));
 		}
 	}
 }

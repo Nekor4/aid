@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
-namespace Aid.BehaviourTree {
+namespace Aid.AI.BehaviourTree.Nodes.Composites {
     public class Parallel : CompositeNode {
         List<State> childrenLeftToExecute = new List<State>();
 

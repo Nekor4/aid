@@ -1,7 +1,7 @@
-namespace Aid.BehaviourTree
-{
-    using UnityEngine;
+using UnityEngine;
 
+namespace Aid.AI.BehaviourTree.Nodes
+{
     public abstract class Node : ScriptableObject
     {
         public enum State
@@ -14,7 +14,7 @@ namespace Aid.BehaviourTree
         [HideInInspector] public bool started = false;
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 graphPosition;
-        [HideInInspector] public Blackboard blackboard;
+        [HideInInspector] public Blackboard.Blackboard blackboard;
         [HideInInspector] public GameObject runnerObject;
         [TextArea] public string description;
 

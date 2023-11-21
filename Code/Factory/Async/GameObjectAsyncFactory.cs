@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Aid.Factory
+namespace Aid.Factory.Async
 {
     public class GameObjectAsyncFactory : IAsyncFactory<GameObject>
     {

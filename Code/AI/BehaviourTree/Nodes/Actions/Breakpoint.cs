@@ -1,7 +1,7 @@
-namespace Aid.BehaviourTree
-{
-    using UnityEngine;
+using UnityEngine;
 
+namespace Aid.AI.BehaviourTree.Nodes.Actions
+{
     public class Breakpoint : ActionNode
     {
         protected override void OnStart()

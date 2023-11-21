@@ -1,7 +1,7 @@
-﻿namespace Aid.BehaviourTree
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace Aid.AI.BehaviourTree
+{
     public class BehaviourTreeRunner : MonoBehaviour
     {
         [SerializeField] private BehaviourTree behaviourTree;

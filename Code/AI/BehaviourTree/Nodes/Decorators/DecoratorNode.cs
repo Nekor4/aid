@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Aid.BehaviourTree
+namespace Aid.AI.BehaviourTree.Nodes.Decorators
 {
     public abstract class DecoratorNode : Node
     {

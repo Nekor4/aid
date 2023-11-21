@@ -1,6 +1,6 @@
 using System;
 
-namespace Aid
+namespace Aid.Transitions
 {
 	public class Transition
 	{

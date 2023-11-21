@@ -1,4 +1,7 @@
-﻿using Aid.Events;
+﻿using Aid.Audio.AudioData;
+using Aid.Audio.SoundEmitters;
+using Aid.Events;
+using Aid.Events.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Audio;
 

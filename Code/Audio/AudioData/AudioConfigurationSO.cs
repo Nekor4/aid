@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Aid.Audio
+namespace Aid.Audio.AudioData
 {
 	
 
