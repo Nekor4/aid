@@ -1,4 +1,5 @@
 ﻿using System;
+using Aid.HealthComponents;
 using UnityEngine;
 
 namespace Aid.Detector
@@ -8,7 +9,7 @@ namespace Aid.Detector
         public bool IsDetectable => gameObject.activeSelf;
         public event Action<IDetectable> DetectionChanged;
 
-        private Health.Health _health;
+        private Health _health;
         private State _state = State.NotReady;
 
         private enum State
@@ -21,7 +22,7 @@ namespace Aid.Detector
 
         private void Awake()
         {
-            _health = GetComponent<Health.Health>();
+            _health = GetComponent<Health>();
             _health.Changed += Refresh;
             _state = State.Ready;
             Refresh();

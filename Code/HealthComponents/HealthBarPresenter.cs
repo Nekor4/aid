@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Aid.Health
+namespace Aid.HealthComponents
 {
     public class HealthBarPresenter : MonoBehaviour
     {

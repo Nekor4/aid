@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Aid.Health
+namespace Aid.HealthComponents
 {
     [RequireComponent(typeof(DynamicUiElement))]
     public class HealthBar : MonoBehaviour
