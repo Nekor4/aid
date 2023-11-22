@@ -1,4 +1,5 @@
 ﻿using Aid.Factory;
+using Aid.Factory.SO;
 using UnityEngine;
 
 namespace Aid.Audio.SoundEmitters

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Aid.Factory
+namespace Aid.Factory.SO
 {
 	/// <summary>
 	/// Implements the IFactory interface for non-abstract types.

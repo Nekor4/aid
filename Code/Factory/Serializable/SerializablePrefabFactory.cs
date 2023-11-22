@@ -2,10 +2,10 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Aid.Factory
+namespace Aid.Factory.Serializable
 {
     [Serializable]
-    public class SerializedPrefabFactory : IFactory<GameObject>
+    public class SerializablePrefabFactory : IFactory<GameObject>
     {
         [SerializeField] private GameObject prefab;
         public GameObject Create()
