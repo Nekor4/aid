@@ -1,4 +1,5 @@
 ﻿using Aid.Factory;
+using Aid.Factory.Serializable;
 using UnityEngine;
 
 namespace Aid.Pool
@@ -6,12 +7,12 @@ namespace Aid.Pool
     [CreateAssetMenu(menuName = "Aid/Pool/Prefab Pool")]
     public class PrefabPool : PoolSO<GameObject>
     {
-        [SerializeField] private SerializedPrefabFactory factory;
+        [SerializeField] private SerializablePrefabFactory factory;
 
         public override IFactory<GameObject> Factory
         {
             get => factory;
-            set => factory = value as SerializedPrefabFactory;
+            set => factory = value as SerializablePrefabFactory;
         }
 
         public override GameObject Request()

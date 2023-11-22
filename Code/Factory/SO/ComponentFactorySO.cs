@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Aid.Factory
+namespace Aid.Factory.SO
 {
     public abstract class ComponentFactorySO<T> : FactorySO<T> where T : Component
     {
