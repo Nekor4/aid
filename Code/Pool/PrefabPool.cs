@@ -12,7 +12,6 @@ namespace Aid.Pool
         public override IFactory<GameObject> Factory
         {
             get => factory;
-            set => factory = value as SerializablePrefabFactory;
         }
 
         public override GameObject Request()

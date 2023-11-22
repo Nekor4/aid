@@ -16,10 +16,6 @@ public class SoundEmitterPoolSO : ComponentPoolSO<SoundEmitter>
 		{
 			return _factory;
 		}
-		set
-		{
-			_factory = value as SoundEmitterFactorySO;
-		}
 	}
 }
 }
