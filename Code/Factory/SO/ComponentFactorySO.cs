@@ -2,7 +2,7 @@
 
 namespace Aid.Factory
 {
-    public abstract class ComponentFactory<T> : FactorySO<T> where T : Component
+    public abstract class ComponentFactorySO<T> : FactorySO<T> where T : Component
     {
         [SerializeField] private T prefab;
         
