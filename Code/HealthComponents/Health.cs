@@ -20,6 +20,26 @@ namespace Aid.HealthComponents
         public event Action Died;
         public event Action Changed;
 
+        public void SetMax(int newValue)
+        {
+            maxValue = newValue;
+            value = Mathf.Clamp(value, 0, maxValue);
+
+            Changed?.Invoke();
+
+            if (value == 0) Died?.Invoke();
+        }
+
+        public void Set(int newValue)
+        {
+            value = newValue;
+            value = Mathf.Clamp(this.value, 0, maxValue);
+
+            Changed?.Invoke();
+
+            if (this.value == 0) Died?.Invoke();
+        }
+
         public void Add(int amount)
         {
             AddInternal(amount);
@@ -34,7 +54,7 @@ namespace Aid.HealthComponents
         {
             value += amount;
             value = Mathf.Clamp(value, 0, maxValue);
-            
+
             Changed?.Invoke();
 
             if (value == 0) Died?.Invoke();
