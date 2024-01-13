@@ -29,7 +29,9 @@ namespace Aid.HealthComponents
         public HealthBar Get()
         {
             _barsPool ??= new ObjectPool<HealthBar>(Create, null, OnRelease);
-            return _barsPool.Get();
+            var bar = _barsPool.Get();
+            bar.gameObject.SetActive(true);
+            return bar;
         }
 
         public PooledObject<HealthBar> Get(out HealthBar bar) => _barsPool.Get(out bar);

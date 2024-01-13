@@ -31,6 +31,7 @@ namespace Aid.HealthComponents
 
         public void Clear()
         {
+            _health.Changed -= HealthOnChanged;
             _health = null;
         }
 
@@ -47,13 +48,10 @@ namespace Aid.HealthComponents
             AnimateRedraw();
         }
 
-
         private void LateUpdate()
         {
             _dynamicUiElement.UpdatePosition(_health.transform.position + _health.transform.up * _heightOffset);
         }
-        
-
 
         private void AnimateRedraw()
         {
