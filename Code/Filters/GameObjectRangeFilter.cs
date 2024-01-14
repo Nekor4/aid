@@ -8,11 +8,16 @@ namespace Aid.Filters
 
         private float Range => transform.lossyScale.x * range;
 
+        public void ChangeRange(float newRange)
+        {
+            range = newRange;
+        }
+
         public bool IsPassing(GameObject detectable)
         {
             return Vector3.Distance(transform.position, detectable.transform.position) <= Range;
         }
-        
+
         private void OnDrawGizmos()
         {
             var color = Gizmos.color;
