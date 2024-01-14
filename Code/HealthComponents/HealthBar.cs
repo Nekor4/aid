@@ -12,12 +12,14 @@ namespace Aid.HealthComponents
         [SerializeField] private Image valueFillAfterimage;
         [SerializeField] private TextMeshProUGUI valueText;
 
+        private HealthBarFillAnimation _fillAnimation;
         private DynamicUiElement _dynamicUiElement;
         private Health _health;
         private float _heightOffset;
 
         private void Awake()
         {
+            _fillAnimation = new HealthBarFillAnimation(1);
             _dynamicUiElement = GetComponent<DynamicUiElement>();
         }
 
@@ -56,11 +58,14 @@ namespace Aid.HealthComponents
         private void AnimateRedraw()
         {
             valueText.text = _health.CurrentValue.ToString();
-            var startFill = valueFill.fillAmount;
             var targetFill = _health.FillAmount;
             valueFill.fillAmount = targetFill;
+            _fillAnimation.Play(targetFill);
+        }
 
-            valueFillAfterimage.fillAmount = targetFill;
+        private void Update()
+        {
+            valueFillAfterimage.fillAmount = _fillAnimation.Update(Time.deltaTime);
         }
     }
 }
