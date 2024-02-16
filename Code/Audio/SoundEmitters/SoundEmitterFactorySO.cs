@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Aid.Audio.SoundEmitters
 {
-	[CreateAssetMenu(fileName = "NewSoundEmitterFactory", menuName = "Factory/SoundEmitter Factory")]
-	public class SoundEmitterFactorySO : FactorySO<SoundEmitter>
-	{
-		public SoundEmitter prefab = default;
+    [CreateAssetMenu(fileName = "NewSoundEmitterFactory", menuName = "Aid/Factory/SoundEmitter Factory")]
+    public class SoundEmitterFactorySO : FactorySO<SoundEmitter>
+    {
+        public SoundEmitter prefab = default;
 
-		public override SoundEmitter Create()
-		{
-			return Instantiate(prefab);
-		}
-	}
+        public override SoundEmitter Create()
+        {
+            return Instantiate(prefab);
+        }
+    }
 }
