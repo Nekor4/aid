@@ -23,10 +23,11 @@ namespace Aid.HealthComponents
             _dynamicUiElement = GetComponent<DynamicUiElement>();
         }
 
-        public void Set(Health health, float heightOffset)
+        public void Set(Health health, float heightOffset, Color color)
         {
             _heightOffset = heightOffset;
             _health = health;
+            valueFill.color = color;
             Redraw();
             _health.Changed += HealthOnChanged;
         }

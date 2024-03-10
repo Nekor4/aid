@@ -5,6 +5,7 @@ namespace Aid.HealthComponents
     public class HealthBarPresenter : MonoBehaviour
     {
         [SerializeField] private float heightOffset = 2f;
+        [SerializeField] private Color color = Color.green;
         private Health _health;
         private HealthBar _view;
 
@@ -13,7 +14,7 @@ namespace Aid.HealthComponents
             _health ??= GetComponent<Health>();
 
             _view = HealthBarsPool.Instance.Get();
-            _view.Set(_health, heightOffset);
+            _view.Set(_health, heightOffset, color);
         }
 
         private void OnDisable()
