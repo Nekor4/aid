@@ -37,7 +37,7 @@ namespace Aid.HealthComponents
 
             Changed?.Invoke();
 
-            if (this.value == 0) Died?.Invoke();
+            if (value == 0) Died?.Invoke();
         }
 
         public void Add(int amount)
@@ -52,11 +52,14 @@ namespace Aid.HealthComponents
 
         private void AddInternal(int amount)
         {
-            value += amount;
-            value = Mathf.Clamp(value, 0, maxValue);
+            var newValue = value + amount;
+            newValue = Mathf.Clamp(newValue, 0, maxValue);
+
+            if (newValue == value) return;
+
+            value = newValue;
 
             Changed?.Invoke();
-
             if (value == 0) Died?.Invoke();
         }
     }
