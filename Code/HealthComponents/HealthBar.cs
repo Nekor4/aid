@@ -68,5 +68,10 @@ namespace Aid.HealthComponents
         {
             valueFillAfterimage.fillAmount = _fillAnimation.Update(Time.deltaTime);
         }
+
+        public void ChangeColor(Color newColor)
+        {
+            valueFill.color = newColor;
+        }
     }
 }
