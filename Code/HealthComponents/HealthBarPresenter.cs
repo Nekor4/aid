@@ -34,5 +34,12 @@ namespace Aid.HealthComponents
                 HealthBarsPool.Instance.Release(_view);
             _view = null;
         }
+
+        public void ChangeColor(Color newColor)
+        {
+            color = newColor;
+            if (_view != null)
+                _view.ChangeColor(color);
+        }
     }
 }
