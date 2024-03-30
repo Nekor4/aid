@@ -9,6 +9,7 @@ namespace Aid.Detector
     public class FilterDetector : MonoBehaviour, IDetector
     {
         [SerializeField] private int refreshFrameInterval = 10;
+        [SerializeField] private AbstractScriptableObjectFilter[] soFilters;
         public bool IsAnyDetected => AllDetected.Count > 0 && GetClosest() != null;
         public IReadOnlyList<IDetectable> AllDetected => _detected;
         public event Action<IDetectable> ObjectDetected;
@@ -24,6 +25,7 @@ namespace Aid.Detector
         private void Awake()
         {
             GetComponentsInChildren(_filters);
+            _filters.AddRange(soFilters);
         }
 
         public IDetectable GetClosest()
@@ -98,6 +100,17 @@ namespace Aid.Detector
             }
 
             _closest = closest;
+        }
+
+        public void AddFilter(IGameObjectFilter filter)
+        {
+            if (_filters.Contains(filter) == false)
+                _filters.Add(filter);
+        }
+
+        public void RemoveFilter(IGameObjectFilter filter)
+        {
+            _filters.Remove(filter);
         }
     }
 
