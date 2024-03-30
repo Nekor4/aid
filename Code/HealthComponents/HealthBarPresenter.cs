@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Aid.HealthComponents
 {
@@ -9,13 +10,14 @@ namespace Aid.HealthComponents
         private Health _health;
         private HealthBar _view;
 
-        private void OnEnable()
+        private async void OnEnable()
         {
             _health ??= GetComponent<Health>();
 
             _health.Died += Dispose;
 
             _view = HealthBarsPool.Instance.Get();
+            await Task.Yield();
             _view.Set(_health, heightOffset, color);
         }
 

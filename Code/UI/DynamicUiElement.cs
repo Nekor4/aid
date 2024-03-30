@@ -25,13 +25,12 @@ namespace Aid.UI
 
         protected virtual void Init()
         {
-            
         }
-        
+
         public void UpdatePosition(Vector3 worldPosition)
         {
-            if(isInited == false) return;
-            
+            if (isInited == false) return;
+
             var newAnchor = mainCamera.WorldToViewportPoint(worldPosition);
 
             if (clampToScreenEdge)
@@ -43,13 +42,18 @@ namespace Aid.UI
                 newAnchor.y = Mathf.Clamp(newAnchor.y, min, max);
             }
 
-
             if (smoothMovement)
             {
                 newAnchor = Vector3.Lerp(rectTransform.anchorMin, newAnchor, .1f);
             }
 
+            rectTransform.anchorMin = newAnchor;
+            rectTransform.anchorMax = newAnchor;
+        }
 
+        public void ForcePosition(Vector3 worldPosition)
+        {
+            var newAnchor = mainCamera.WorldToViewportPoint(worldPosition);
             rectTransform.anchorMin = newAnchor;
             rectTransform.anchorMax = newAnchor;
         }
