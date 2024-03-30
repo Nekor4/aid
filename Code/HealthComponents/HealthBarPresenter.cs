@@ -5,6 +5,7 @@ namespace Aid.HealthComponents
 {
     public class HealthBarPresenter : MonoBehaviour
     {
+        [SerializeField] private HealthBarFactorySO barFactory;
         [SerializeField] private float heightOffset = 2f;
         [SerializeField] private Color color = Color.green;
         private Health _health;
@@ -16,7 +17,7 @@ namespace Aid.HealthComponents
 
             _health.Died += Dispose;
 
-            _view = HealthBarsPool.Instance.Get();
+            _view = HealthBarsPool.Instance.Get(barFactory);
             await Task.Yield();
             _view.Set(_health, heightOffset, color);
         }
@@ -33,7 +34,7 @@ namespace Aid.HealthComponents
             if (_view == null) return;
 
             if (HealthBarsPool.IsInstanceExists)
-                HealthBarsPool.Instance.Release(_view);
+                HealthBarsPool.Instance.Release(_view, barFactory);
             _view = null;
         }
 
