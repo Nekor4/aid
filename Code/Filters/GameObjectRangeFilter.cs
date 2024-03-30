@@ -20,6 +20,7 @@ namespace Aid.Filters
 
         private void OnDrawGizmos()
         {
+            if (enabled == false) return;
             var color = Gizmos.color;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, Range);

@@ -102,15 +102,15 @@ namespace Aid.Detector
             _closest = closest;
         }
 
-        public void AddFilter(IGameObjectFilter filter)
+        public void OverrideExternalFilters(AbstractScriptableObjectFilter[] externalFilters)
         {
-            if (_filters.Contains(filter) == false)
-                _filters.Add(filter);
-        }
+            foreach (var filter in soFilters)
+            {
+                _filters.Remove(filter);
+            }
 
-        public void RemoveFilter(IGameObjectFilter filter)
-        {
-            _filters.Remove(filter);
+            soFilters = externalFilters;
+            _filters.AddRange(soFilters);
         }
     }
 

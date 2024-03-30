@@ -1,23 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.Pool;
 
 namespace Aid.HealthComponents
 {
-    public class HealthBarsPool : Singleton<HealthBarsPool>, IObjectPool<HealthBar>
+    public class HealthBarsPool : Singleton<HealthBarsPool>
     {
-        [SerializeField] private HealthBar healthBarViewPrefab;
+        private readonly Dictionary<HealthBarFactorySO, ObjectPool<HealthBar>> _barsPools = new();
 
-        private ObjectPool<HealthBar> _barsPool;
-
-        private void Awake()
+        public HealthBar Get(HealthBarFactorySO healthBarFactory)
         {
-            _barsPool ??= new ObjectPool<HealthBar>(Create, null, OnRelease);
+            var pool = GetPoolByFactory(healthBarFactory);
+            var bar = pool.Get();
+            bar.gameObject.SetActive(true);
+            return bar;
         }
 
-        private HealthBar Create()
+        private ObjectPool<HealthBar> GetPoolByFactory(HealthBarFactorySO factory)
         {
-            var bar = Instantiate(healthBarViewPrefab, transform);
-            return bar;
+            if (_barsPools.TryGetValue(factory, out var pool))
+                return pool;
+
+            pool = new ObjectPool<HealthBar>(factory.Create, OnGet, OnRelease);
+            _barsPools.Add(factory, pool);
+            return pool;
+        }
+
+        private void OnGet(HealthBar healthBarView)
+        {
+            healthBarView.gameObject.SetActive(true);
+            healthBarView.transform.SetParent(transform, false);
         }
 
         private void OnRelease(HealthBar healthBarView)
@@ -26,20 +37,6 @@ namespace Aid.HealthComponents
             healthBarView.gameObject.SetActive(false);
         }
 
-        public HealthBar Get()
-        {
-            _barsPool ??= new ObjectPool<HealthBar>(Create, null, OnRelease);
-            var bar = _barsPool.Get();
-            bar.gameObject.SetActive(true);
-            return bar;
-        }
-
-        public PooledObject<HealthBar> Get(out HealthBar bar) => _barsPool.Get(out bar);
-
-        public void Release(HealthBar element) => _barsPool.Release(element);
-
-        public void Clear() => _barsPool.Clear();
-
-        public int CountInactive => _barsPool.CountInactive;
+        public void Release(HealthBar element, HealthBarFactorySO factory) => _barsPools[factory].Release(element);
     }
 }
