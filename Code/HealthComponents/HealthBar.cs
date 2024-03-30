@@ -30,6 +30,7 @@ namespace Aid.HealthComponents
             valueFill.color = color;
             Redraw();
             _health.Changed += HealthOnChanged;
+            _dynamicUiElement.ForcePosition(_health.transform.position + _health.transform.up * _heightOffset);
         }
 
         public void Clear()
