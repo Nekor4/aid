@@ -24,6 +24,8 @@ namespace Aid.Detector
 
         private readonly List<IDetectable> _detectables = new();
 
+        public List<IDetectable> Detectables => _detectables;
+
         public void Register(IDetectable detectable)
         {
             if (_detectables.Contains(detectable)) return;
@@ -31,9 +33,11 @@ namespace Aid.Detector
             _detectables.Add(detectable);
         }
 
-        public void UnRegister(IDetectable detectable)
+        public static void UnRegister(IDetectable detectable)
         {
-            _detectables.Remove(detectable);
+            if (_instance == null) return;
+            
+            _instance._detectables.Remove(detectable);
         }
 
         public List<IDetectable> Detect(IReadOnlyList<IGameObjectFilter> filters)
@@ -57,5 +61,43 @@ namespace Aid.Detector
 
             return true;
         }
+
     }
+#if UNITY_EDITOR
+
+    [UnityEditor.CustomEditor(typeof(DetectablesRegistry))]
+    public class DetectablesRegistryEditor : UnityEditor.Editor
+    {
+        private bool _showDetectedList;
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            UnityEditor.EditorGUILayout.Separator();
+            var detector = (DetectablesRegistry)target;
+
+
+            var detected = detector.Detectables;
+
+            if (detected.Count <= 0)
+            {
+                GUILayout.Label($"Nothing detected");
+            }
+            else
+            {
+                _showDetectedList = UnityEditor.EditorGUILayout.Foldout(_showDetectedList, $"Detected ({detected.Count}): ");
+                if (_showDetectedList)
+                {
+                    UnityEditor.EditorGUI.BeginDisabledGroup(true);
+                    for (int i = 0; i < detected.Count; i++)
+                    {
+                        UnityEditor.EditorGUILayout.ObjectField(detected[i].transform, typeof(Transform), true);
+                    }
+
+                    UnityEditor.EditorGUI.EndDisabledGroup();
+                }
+            }
+        }
+    }
+#endif
 }

@@ -66,7 +66,7 @@ namespace Aid.Detector
 
         private void UnRegister()
         {
-            DetectablesRegistry.Instance.UnRegister(this);
+            DetectablesRegistry.UnRegister(this);
             DetectionChanged?.Invoke(this);
             _state = State.NotRegistered;
         }

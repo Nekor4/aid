@@ -15,7 +15,7 @@ namespace Aid.Detector
 
         private void OnDisable()
         {
-            DetectablesRegistry.Instance.UnRegister(this);
+            DetectablesRegistry.UnRegister(this);
             DetectionChanged?.Invoke(this);
         }
     }
