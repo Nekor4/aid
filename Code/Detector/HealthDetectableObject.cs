@@ -6,6 +6,7 @@ namespace Aid.Detector
 {
     public class HealthDetectableObject : MonoBehaviour, IDetectable
     {
+        public GameObject Owner { get; set; }
         public bool IsDetectable => gameObject.activeSelf;
         public event Action<IDetectable> DetectionChanged;
 
