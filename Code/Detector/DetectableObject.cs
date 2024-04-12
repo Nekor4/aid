@@ -5,6 +5,7 @@ namespace Aid.Detector
 {
     public class DetectableObject : MonoBehaviour, IDetectable
     {
+        public GameObject Owner { get; set; }
         public bool IsDetectable => gameObject.activeSelf;
         public event Action<IDetectable> DetectionChanged;
         private void OnEnable()
