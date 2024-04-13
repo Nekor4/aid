@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Aid.HealthComponents
@@ -17,6 +18,7 @@ namespace Aid.HealthComponents
 
             _health.Died += Dispose;
 
+            await UniTask.WaitUntil(() => HealthBarsPool.IsInstanceExists);
             _view = HealthBarsPool.Instance.Get(barFactory);
             await Task.Yield();
             _view.Set(_health, heightOffset, color);
