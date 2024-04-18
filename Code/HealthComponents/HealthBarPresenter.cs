@@ -5,44 +5,47 @@ namespace Aid.HealthComponents
 {
     public class HealthBarPresenter : MonoBehaviour
     {
-        [SerializeField] private HealthBarFactorySO barFactory;
+        [SerializeField] internal HealthBarFactorySO barFactory;
         [SerializeField] private float heightOffset = 2f;
         [SerializeField] private Color color = Color.green;
         private Health _health;
-        private HealthBar _view;
+        private HealthBar _bar;
 
-        private async void OnEnable()
+        private void OnEnable()
         {
             _health ??= GetComponent<Health>();
-
             _health.Died += Dispose;
 
-            _view = HealthBarsPool.Instance.Get(barFactory);
-            await Task.Yield();
-            _view.Set(_health, heightOffset, color);
+            HealthBarPresentersRegistry.Register(this);
+        }
+
+        internal void InjectHealthBar(HealthBar healthBar)
+        {
+            _bar = healthBar;
+            _bar.Set(_health, heightOffset, color);
         }
 
         private void OnDisable()
         {
             _health.Died -= Dispose;
 
-            Dispose();
+            HealthBarPresentersRegistry.Unregister(this);
         }
 
-        private void Dispose()
+        internal void Dispose()
         {
-            if (_view == null) return;
+            if (_bar == null) return;
 
             if (HealthBarsPool.IsInstanceExists)
-                HealthBarsPool.Instance.Release(_view, barFactory);
-            _view = null;
+                HealthBarsPool.Instance.Release(_bar, barFactory);
+            _bar = null;
         }
 
         public void ChangeColor(Color newColor)
         {
             color = newColor;
-            if (_view != null)
-                _view.ChangeColor(color);
+            if (_bar != null)
+                _bar.ChangeColor(color);
         }
     }
 }
