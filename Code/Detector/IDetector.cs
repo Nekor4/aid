@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Aid.Detector
 {
-    public interface IDetector 
+    public interface IDetector
     {
-        GameObject gameObject { get; }
+        public event Action<IDetectable> ObjectDetected;
+        public event Action<IDetectable> ObjectLostDetection;
+
+        public GameObject Owner { get; }
+        public GameObject gameObject { get; }
         bool IsAnyDetected { get; }
         public IReadOnlyList<IDetectable> AllDetected { get; }
         IDetectable GetClosest();

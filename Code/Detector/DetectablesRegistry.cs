@@ -1,30 +1,15 @@
 ﻿using System.Collections.Generic;
 using Aid.Filters;
+using Aid.Singletons;
 using UnityEngine;
 
 namespace Aid.Detector
 {
-    public class DetectablesRegistry : MonoBehaviour
+    public class DetectablesRegistry : PersistentMonoSingleton<DetectablesRegistry>
     {
-        private static DetectablesRegistry _instance;
-
-        public static DetectablesRegistry Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new GameObject("DetectablesRegistry").AddComponent<DetectablesRegistry>();
-                    DontDestroyOnLoad(_instance.gameObject);
-                }
-
-                return _instance;
-            }
-        }
+        public List<IDetectable> Detectables => _detectables;
 
         private readonly List<IDetectable> _detectables = new();
-
-        public List<IDetectable> Detectables => _detectables;
 
         public void Register(IDetectable detectable)
         {
@@ -35,9 +20,8 @@ namespace Aid.Detector
 
         public static void UnRegister(IDetectable detectable)
         {
-            if (_instance == null) return;
-            
-            _instance._detectables.Remove(detectable);
+            if (InstanceExists)
+                Instance._detectables.Remove(detectable);
         }
 
         public List<IDetectable> Detect(IReadOnlyList<IGameObjectFilter> filters)
@@ -62,6 +46,45 @@ namespace Aid.Detector
             return true;
         }
 
+        public List<IDetectable> GetInRange(Vector3 position, float range)
+        {
+            List<IDetectable> list = new();
+            for (int i = 0; i < _detectables.Count; i++)
+            {
+                if (!IsInRange(position, range, _detectables[i]))
+                    continue;
+
+                list.Add(_detectables[i]);
+            }
+
+            return list;
+        }
+
+        public List<IDetectable> OverlapBox(Vector3 position, Vector3 size, Quaternion rotation)
+        {
+            List<IDetectable> list = new();
+
+            foreach (IDetectable detectable in _detectables)
+            {
+                Vector3 objectPosition = detectable.Owner.transform.position;
+
+                Vector3 halfSize = size / 2;
+
+                Vector3 localPosition = Quaternion.Inverse(rotation) * (objectPosition - position);
+
+                if (Mathf.Abs(localPosition.x) < halfSize.x && Mathf.Abs(localPosition.y) < halfSize.y)
+                {
+                    list.Add(detectable);
+                }
+            }
+
+            return list;
+        }
+
+        private bool IsInRange(Vector3 position, float range, IDetectable detectable)
+        {
+            return Vector3.Distance(position, detectable.Owner.transform.position) <= range;
+        }
     }
 #if UNITY_EDITOR
 
