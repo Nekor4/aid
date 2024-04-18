@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Aid.Singletons;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Aid.UpdateManager
 {
-    public class AdvanceUpdateManager : MonoBehaviour
+    public class AdvanceUpdateManager : PersistentMonoSingleton<AdvanceUpdateManager>
     {
         private List<UpdateEntity> _updateEntities = new();
         private List<UpdateEntity> _fixedUpdateEntities = new();
@@ -15,23 +16,6 @@ namespace Aid.UpdateManager
         private List<UpdateEntity> _fixedUpdateEntitiesToRemove = new();
         private List<UpdateEntity> _lateUpdateEntitiesToRemove = new();
 
-        private static AdvanceUpdateManager _instance;
-
-        private static AdvanceUpdateManager Instance
-        {
-            get
-            {
-                if (InstanceExists == false)
-                {
-                    _instance = new GameObject("AdvanceUpdateManager").AddComponent<AdvanceUpdateManager>();
-                }
-
-                return _instance;
-            }
-        }
-
-        public static bool InstanceExists => _instance != null;
-
         public static IUpdateEntity StartUpdate(Action onUpdateAction, UpdateType updateType, int interval = 1)
         {
             return Instance.InternalStartUpdate(onUpdateAction, updateType, interval);
@@ -39,27 +23,20 @@ namespace Aid.UpdateManager
 
         private IUpdateEntity InternalStartUpdate(Action onUpdateAction, UpdateType updateType, int interval = 1)
         {
-            var updateEntity = new UpdateEntity(onUpdateAction, interval);
+            UpdateEntity updateEntity = new(onUpdateAction, interval);
             GetListForUpdateType(updateType).Add(updateEntity);
             return updateEntity;
         }
 
         private List<UpdateEntity> GetListForUpdateType(UpdateType updateType)
         {
-            switch (updateType)
+            return updateType switch
             {
-                case UpdateType.Update:
-                    return _updateEntities;
-
-                case UpdateType.FixedUpdate:
-                    return _fixedUpdateEntities;
-
-                case UpdateType.LateUpdate:
-                    return _lateUpdateEntities;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(updateType), updateType, null);
-            }
+                UpdateType.Update => _updateEntities,
+                UpdateType.FixedUpdate => _fixedUpdateEntities,
+                UpdateType.LateUpdate => _lateUpdateEntities,
+                _ => throw new ArgumentOutOfRangeException(nameof(updateType), updateType, null),
+            };
         }
 
         public static void Stop(IUpdateEntity updateEntity)
@@ -71,7 +48,7 @@ namespace Aid.UpdateManager
 
         private void InternalStop(IUpdateEntity updateEntity)
         {
-            var entity = updateEntity as UpdateEntity;
+            UpdateEntity entity = updateEntity as UpdateEntity;
             Assert.IsNotNull(entity);
 
             if (_updateEntities.Contains(entity))
@@ -105,7 +82,7 @@ namespace Aid.UpdateManager
         private void LateUpdate()
         {
             SafelyRemoveEntities(_lateUpdateEntitiesToRemove, _lateUpdateEntities);
-            
+
             for (int i = 0; i < _lateUpdateEntities.Count; i++)
             {
                 _lateUpdateEntities[i].Tick();

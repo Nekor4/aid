@@ -8,18 +8,18 @@ namespace Aid.Detector
 {
     public class FilterDetector : MonoBehaviour, IDetector
     {
-        [SerializeField] private int refreshFrameInterval = 10;
-        [SerializeField] private AbstractScriptableObjectFilter[] soFilters;
-        public bool IsAnyDetected => AllDetected.Count > 0 && GetClosest() != null;
-        public IReadOnlyList<IDetectable> AllDetected => _detected;
         public event Action<IDetectable> ObjectDetected;
         public event Action<IDetectable> ObjectLostDetection;
+        public GameObject Owner { get; private set; }
+        public bool IsAnyDetected => AllDetected.Count > 0 && GetClosest() != null;
+        public IReadOnlyList<IDetectable> AllDetected => _detected;
+
+        [SerializeField] private int refreshFrameInterval = 10;
+        [SerializeField] private AbstractScriptableObjectFilter[] soFilters;
 
         private readonly List<IDetectable> _detected = new List<IDetectable>(32);
         private IUpdateEntity _updateEntity;
-
         private IDetectable _closest;
-
         private readonly List<IGameObjectFilter> _filters = new(2);
 
         private void Awake()
