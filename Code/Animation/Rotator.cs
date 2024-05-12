@@ -9,7 +9,7 @@ namespace Aid.Animation
         public void Update()
         {
             var rot = transform.rotation;
-            rot *= Quaternion.Euler(speed);
+            rot *= Quaternion.Euler(speed * Time.deltaTime);
             transform.rotation = rot;
         }
     }
