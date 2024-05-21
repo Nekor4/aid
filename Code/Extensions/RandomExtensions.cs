@@ -1,14 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace TapNice.Scripts.GameCore.Extensions
+namespace Aid.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     public static class RandomExtensions
     {
-        private static Random rnd = new Random(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+        private static System.Random rnd = new System.Random(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
 
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
         {

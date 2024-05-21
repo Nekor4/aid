@@ -1,7 +1,7 @@
-﻿namespace TapNice.Scripts.GameCore.Extensions
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace Aid.Extensions
+{
     public static class AnimationCurveExtensions
     {
         public static int[] CurveToValues(this AnimationCurve curve, int count)
