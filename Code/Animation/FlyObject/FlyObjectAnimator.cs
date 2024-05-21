@@ -13,7 +13,6 @@ namespace Aid.Animation.FlyObject
         private Vector3 _startPoint;
         private Vector3 _controlPoint, _currentControlPointOffset, _localPositionInTarget;
         private Vector3 _endPoint;
-        private Transform _targetPoint;
 
         private Vector3 _startScale, _endScale;
 
@@ -38,16 +37,14 @@ namespace Aid.Animation.FlyObject
             SetupFly(startPosition, targetPosition, Vector3.zero, Vector3.one);
         }
 
-        private void SetupFly(Vector3 startPoint, Vector3 endPoint, Vector3 startScale, Vector3 endScale,
-            Transform targetPoint = null, Action callback = null)
+        private void SetupFly(Vector3 startPoint, Vector3 endPoint, Vector3 startScale, Vector3 endScale)
         {
-            _currentControlPointOffset = _settings.RandomControlPointOffset;
+            _currentControlPointOffset = _settings.upAxis * 5;
             transform.localScale = startScale;
             _startPoint = startPoint;
             _endPoint = endPoint;
             _startScale = startScale;
             _endScale = endScale;
-            _targetPoint = targetPoint;
             _timer = 0;
             enabled = true;
         }
@@ -56,9 +53,6 @@ namespace Aid.Animation.FlyObject
         {
             _timer += Time.deltaTime / _settings.duration;
             _controlPoint = _startPoint + _currentControlPointOffset;
-
-            if (_targetPoint != null)
-                _endPoint = _targetPoint.position;
 
             transform.position = MathExtension.CubicBezier(_startPoint, _controlPoint, _endPoint,
                 _settings.positionCurve.Evaluate(_timer));
@@ -73,7 +67,6 @@ namespace Aid.Animation.FlyObject
 
         private void OnFlyCompleted()
         {
-            _targetPoint = null;
             enabled = false;
             _timer = 0;
             _flyCompleted?.Invoke();

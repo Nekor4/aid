@@ -1,5 +1,6 @@
 ﻿using System;
 using Aid.Extensions;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Aid.Animation.FlyObject
@@ -11,10 +12,14 @@ namespace Aid.Animation.FlyObject
 
         [SerializeField] private FlySetting settings;
 
-        public void Play(Vector3 startPosition, Vector3 targetPosition, Vector3 upAxis, Action completed)
+        public async void Play(Vector3 startPosition, Vector3 targetPosition, Vector3 upAxis, Action completed)
         {
             var flyObject = pool.Request();
-            flyObject.Set(settings, startPosition, targetPosition, completed);
+            settings.upAxis = upAxis;
+            flyObject.Set(settings, startPosition, targetPosition, null);
+            await UniTask.WaitForSeconds(settings.duration);
+            completed?.Invoke();
+            pool.Return(flyObject);
         }
 
         [Serializable]
@@ -22,10 +27,12 @@ namespace Aid.Animation.FlyObject
         {
             public float duration;
             public AnimationCurve positionCurve, scaleCurve;
-            [SerializeField] private Vector3 controlPointMinOffset, controlPointMaxOffset;
 
-            public Vector3 RandomControlPointOffset =>
-                RandomExtensions.Range(controlPointMinOffset, controlPointMaxOffset);
+            public Vector3 upAxis;
+            // [SerializeField] private Vector3 controlPointMinOffset, controlPointMaxOffset;
+            //
+            // public Vector3 RandomControlPointOffset =>
+            //     RandomExtensions.Range(controlPointMinOffset, controlPointMaxOffset);
         }
     }
 }
