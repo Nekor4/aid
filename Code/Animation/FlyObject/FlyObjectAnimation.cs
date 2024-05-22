@@ -19,6 +19,7 @@ namespace Aid.Animation.FlyObject
             flyObject.Set(settings, startPosition, targetPosition, null);
             await UniTask.WaitForSeconds(settings.duration);
             completed?.Invoke();
+            await UniTask.WaitForSeconds(settings.duration);
             pool.Return(flyObject);
         }
 
