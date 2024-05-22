@@ -32,6 +32,7 @@ namespace Aid.Animation.FlyObject
             _flyCompleted = completed;
             transform.position = startPosition;
 
+            playTrail.Clear();
             playTrail.enabled = true;
             playParticle.gameObject.SetActive(true);
             SetupFly(startPosition, targetPosition, Vector3.zero, Vector3.one);
