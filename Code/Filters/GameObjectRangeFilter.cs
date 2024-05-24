@@ -15,6 +15,9 @@ namespace Aid.Filters
 
         public bool IsPassing(GameObject detectable)
         {
+            if (range <= 0)
+                return true;
+
             return Vector3.Distance(transform.position, detectable.transform.position) <= Range;
         }
 
