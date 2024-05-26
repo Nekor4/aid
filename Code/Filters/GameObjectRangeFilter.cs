@@ -21,7 +21,7 @@ namespace Aid.Filters
             return Vector3.Distance(transform.position, detectable.transform.position) <= Range;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (enabled == false) return;
             var color = Gizmos.color;
