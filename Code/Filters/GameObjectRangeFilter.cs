@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Aid.Detector;
+using UnityEngine;
 
 namespace Aid.Filters
 {
@@ -18,7 +19,11 @@ namespace Aid.Filters
             if (range <= 0)
                 return true;
 
-            return Vector3.Distance(transform.position, detectable.transform.position) <= Range;
+            var detectableRadius = detectable.TryGetComponent<IDetectable>(out var detectableComponent)
+                ? detectableComponent.Radius
+                : 0;
+
+            return Vector3.Distance(transform.position, detectable.transform.position) <= Range + detectableRadius;
         }
 
         private void OnDrawGizmosSelected()
