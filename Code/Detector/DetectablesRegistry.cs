@@ -40,7 +40,7 @@ namespace Aid.Detector
         {
             for (int i = 0; i < filters.Count; i++)
             {
-                if (filters[i].IsPassing(detectable.transform.gameObject) == false) return false;
+                if (filters[i].IsPassing(detectable.gameObject) == false) return false;
             }
 
             return true;
@@ -66,7 +66,7 @@ namespace Aid.Detector
 
             foreach (IDetectable detectable in _detectables)
             {
-                Vector3 objectPosition = detectable.Owner.transform.position;
+                Vector3 objectPosition = detectable.Position;
 
                 Vector3 halfSize = size / 2;
 
@@ -83,7 +83,7 @@ namespace Aid.Detector
 
         private bool IsInRange(Vector3 position, float range, IDetectable detectable)
         {
-            return Vector3.Distance(position, detectable.Owner.transform.position) <= range;
+            return Vector3.Distance(position, detectable.Position) <= range + detectable.Radius;
         }
     }
 #if UNITY_EDITOR
@@ -108,7 +108,8 @@ namespace Aid.Detector
             }
             else
             {
-                _showDetectedList = UnityEditor.EditorGUILayout.Foldout(_showDetectedList, $"Detected ({detected.Count}): ");
+                _showDetectedList =
+                    UnityEditor.EditorGUILayout.Foldout(_showDetectedList, $"Detected ({detected.Count}): ");
                 if (_showDetectedList)
                 {
                     UnityEditor.EditorGUI.BeginDisabledGroup(true);
