@@ -14,7 +14,6 @@ namespace Aid.HealthComponents
         private void OnEnable()
         {
             _health ??= GetComponent<Health>();
-            _health.Died += Dispose;
 
             HealthBarPresentersRegistry.Register(this);
         }
@@ -27,8 +26,6 @@ namespace Aid.HealthComponents
 
         private void OnDisable()
         {
-            _health.Died -= Dispose;
-
             HealthBarPresentersRegistry.Unregister(this);
         }
 
