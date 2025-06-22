@@ -5,8 +5,8 @@ namespace Aid.UI
 {
     public class WindowShowHideHandler : MonoBehaviour
     {
-        private readonly List<Window> _windowsToShow = new List<Window>(32);
-        private readonly List<Window> _windowsToHide = new List<Window>(32);
+        private readonly List<WindowConfig> _windowsToShow = new List<WindowConfig>(32);
+        private readonly List<WindowConfig> _windowsToHide = new List<WindowConfig>(32);
 
         private static WindowShowHideHandler _instance;
 
@@ -22,7 +22,7 @@ namespace Aid.UI
                 return _instance;
             }
         }
-        public void Show(Window window)
+        public void Show(WindowConfig window)
         {
             if (_windowsToShow.Contains(window)) return;
 
@@ -32,7 +32,7 @@ namespace Aid.UI
             _windowsToShow.Add(window);
         }
 
-        public void Hide(Window window)
+        public void Hide(WindowConfig window)
         {
             if (_windowsToHide.Contains(window)) return;
 
@@ -46,12 +46,12 @@ namespace Aid.UI
         {
             for (int i = 0; i < _windowsToShow.Count; i++)
             {
-                _windowsToShow[i].Show();
+               WindowsManager.Instance.GetWindow(_windowsToShow[i]).Show();
             }
 
             for (int i = 0; i < _windowsToHide.Count; i++)
             {
-                _windowsToHide[i].Hide();
+                WindowsManager.Instance.GetWindow(_windowsToHide[i]).Hide();
             }
 
             _windowsToShow.Clear();

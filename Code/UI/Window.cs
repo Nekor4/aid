@@ -11,6 +11,7 @@ namespace Aid.UI
     [RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
     public abstract class Window : MonoBehaviour
     {
+        [SerializeField] private WindowConfig config;
         public event Action<Window> Initialized, Hidden, Shown, StartShowing, StartHiding;
 
         private Transition _showTransition;
@@ -31,6 +32,8 @@ namespace Aid.UI
             Shown,
             Showing
         }
+        
+        public WindowConfig Config => config;
 
         public bool IsHidden => CurrentState is State.Hidden or State.Hiding;
 

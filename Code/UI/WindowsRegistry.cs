@@ -5,44 +5,90 @@ namespace Aid.UI
 {
     public class WindowsRegistry
     {
-        private readonly List<Window> registeredWindows;
-        private readonly List<Window> shownWindows;
+        private readonly Dictionary<WindowConfig, Window> _registeredWindows = new(32);
+        private readonly List<Window> _shownWindows = new(32);
 
-        public  WindowsRegistry()
+        private Transform _parent;
+        public WindowsRegistry(Transform parent)
         {
-            registeredWindows = new List<Window>(32);
-            shownWindows = new List<Window>(32);
+            _parent = parent;
+            var windows = parent.GetComponentsInChildren<Window>(true);
+            foreach (var window in windows)
+            {
+                Register(window);
+            }
         }
 
-        public  void Register(Window window)
+        public void Register(Window window)
         {
-            if (registeredWindows.Contains(window))
+            if(window.Config == null)
             {
-                Debug.LogError($"Trying to register {window.name}, but it is already registered.");
+                Debug.LogError($"Trying to register {window.name}, but it has no config.");
+                return;
+            }
+            
+            if (_registeredWindows.ContainsKey(window.Config))
+            {
+                Debug.LogError($"Trying to register {window.name}, but it is already registered with config {window.Config.name}.");
                 return;
             }
 
             window.Shown += OnWindowShown;
             window.Shown -= OnWindowHidden;
 
-            registeredWindows.Add(window);
+            _registeredWindows.Add(window.Config, window);
         }
-
-        private  void OnWindowShown(Window window)
+        
+        public Window GetWindow(WindowConfig config) 
         {
-            shownWindows.Add(window);
+            if (_registeredWindows.TryGetValue(config, out var window))
+            {
+                return window;
+            }
+
+            return Load(config);
+        }
+        
+        public Window Load(WindowConfig config)
+        {
+            if (config == null)
+            {
+                Debug.LogError("WindowConfig is null.");
+                return null;
+            }
+
+            if (_registeredWindows.TryGetValue(config, out var window))
+            {
+                return window;
+            }
+
+            if (config.Prefab == null)
+            {
+                Debug.LogError($"WindowConfig {config.name} has no prefab assigned.", config);
+                return null;
+            }
+
+            window = Object.Instantiate(config.Prefab, _parent);
+            _registeredWindows.Add(config, window);
+            return window;
+        }
+  
+
+        private void OnWindowShown(Window window)
+        {
+            _shownWindows.Add(window);
         }
 
         private  void OnWindowHidden(Window window)
         {
-            shownWindows.Remove(window);
+            _shownWindows.Remove(window);
         }
 
         public  void HideAll()
         {
-            for (int i = 0; i < shownWindows.Count; i++)
+            for (int i = 0; i < _shownWindows.Count; i++)
             {
-                WindowShowHideHandler.Instance.Hide(shownWindows[i]);
+                WindowShowHideHandler.Instance.Hide(_shownWindows[i].Config);
             }            
         }
     }
