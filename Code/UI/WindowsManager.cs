@@ -1,65 +1,60 @@
 namespace Aid.UI
 {
-	using UnityEngine;
+    using UnityEngine;
 
-	public class WindowsManager : MonoBehaviour
-	{
-		private static string PrefabPath = "UI/WindowsManager";
-		
-		protected static WindowsManager instance;
+    public class WindowsManager : MonoBehaviour
+    {
+        private static string PrefabPath = "UI/WindowsManager";
 
-		public static WindowsManager Instance
-		{
-			get
-			{
-				if (instance == null)
-				{
-					instance = (WindowsManager) FindObjectOfType(typeof(WindowsManager));
+        protected static WindowsManager instance;
 
-					if (instance == null)
-					{
-						CreateInstance();
-					}
-					instance.Init();
-				}
+        public static WindowsManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = (WindowsManager)FindAnyObjectByType(typeof(WindowsManager));
 
-				return instance;
-			}
-		}
+                    if (instance == null)
+                    {
+                        CreateInstance();
+                    }
 
-		private static void CreateInstance()
-		{
-			instance = Instantiate(Resources.Load<WindowsManager>(PrefabPath));
-		}
+                    instance.Init();
+                }
 
-		private Canvas canvas;
+                return instance;
+            }
+        }
 
-		private Transform parent;
+        private static void CreateInstance()
+        {
+            instance = Instantiate(Resources.Load<WindowsManager>(PrefabPath));
+        }
 
-		private WindowsRegistry registry;
+        private Canvas _canvas;
 
-		private void Init()
-		{
-			DontDestroyOnLoad(gameObject);
-			canvas = GetComponentInChildren<Canvas>();
-			parent = canvas.transform;
-			registry = new WindowsRegistry();
-		}
+        private Transform _parent;
 
-		public Window Load(GameObject windowPrefab)
-		{
-			// var windowObject = Instantiate(windowPrefab);
-			// DontDestroyOnLoad(windowObject);
-			// windowObject.transform.parent = parent;
-			// return windowObject.GetComponent<Window>();
-			var window =Instantiate(windowPrefab, parent).GetComponent<Window>();
-			registry.Register(window);
-			return window;
-		}
+        private WindowsRegistry _registry;
 
-		public void HideAll()
-		{
-			registry.HideAll();
-		}
-	}
+        private void Init()
+        {
+            DontDestroyOnLoad(gameObject);
+            _canvas = GetComponentInChildren<Canvas>();
+            _parent = _canvas.transform;
+            _registry = new WindowsRegistry(_parent);
+        }
+
+        public void HideAll()
+        {
+            _registry.HideAll();
+        }
+
+        public Window GetWindow(WindowConfig windowConfig)
+        {
+            return _registry.GetWindow(windowConfig);
+        }
+    }
 }

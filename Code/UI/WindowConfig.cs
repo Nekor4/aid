@@ -6,11 +6,9 @@ namespace Aid.UI
     [CreateAssetMenu(fileName = "Window Config", menuName = "Aid/UI/Window Config", order = 0)]
     public class WindowConfig : ScriptableObject
     {
-        [SerializeField] private GameObject prefab;
+        [SerializeField] private Window prefab;
 
-        private Window _window;
-        private bool IsLoaded => _window != null;
-
+        public Window Prefab => prefab;
 
         public event Action<Window> Shown
         {
@@ -18,37 +16,22 @@ namespace Aid.UI
             remove => Window.Shown -= value;
         }
 
-
         public event Action<Window> Hidden
         {
             add => Window.Hidden += value;
             remove => Window.Hidden -= value;
         }
 
-        public Window Window
-        {
-            get
-            {
-                if (IsLoaded == false) Load();
-                return _window;
-            }
-        }
+        public Window Window => WindowsManager.Instance.GetWindow(this);
 
         public void Show()
         {
-            if (IsLoaded == false) Load();
-            WindowShowHideHandler.Instance.Show(_window);
+            WindowShowHideHandler.Instance.Show(this);
         }
 
         public void Hide()
         {
-            if (IsLoaded == false) Load();
-            WindowShowHideHandler.Instance.Hide(_window);
-        }
-
-        private void Load()
-        {
-            _window = WindowsManager.Instance.Load(prefab);
+            WindowShowHideHandler.Instance.Hide(this);
         }
     }
 }
